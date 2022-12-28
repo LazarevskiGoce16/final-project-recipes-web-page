@@ -18,15 +18,17 @@ const App = () => {
         <Route path='/' element={<Main />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/register' element={<Register />}/>
-        <Route path='/recipes' />
+        <Route path='/recipes'>
           <Route path='breakfast' element={<Breakfast />}/>
           <Route path='brunch' element={<Brunch />}/>
           <Route path='lunch' element={<Lunch />}/>
           <Route path='dinner' element={<Dinner />}/>
           <Route path=':id' element={<Recipe />}/>
-        <Route path='my-recipes'/>
+        </Route>
+        <Route path='my-recipes'>
           <Route index element={<MyRecipes />}/>
           <Route path='create' element={<CreateRecipe />}/>
+        </Route>
         <Route path='/my-profile' element={<MyProfile />}/>
       </Routes>
     </>
