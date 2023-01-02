@@ -1,30 +1,35 @@
 import { Link } from "react-router-dom";
 import logo from "../pics/logo_white.svg";
+import "../css/Footer.css";
 
 export const Footer = () => {
     return (
         <>
         <footer>
             <div className="footer-wrapper">
-                <Link to='/'>
-                    <img src={logo} alt="logo-white" />
-                </Link>
-                <Link to='/recipes/breakfast'>
-                    BREAKFAST
-                </Link>
-                <span className="bullet">&#x2022;</span>
-                <Link to='/recipes/brunch'>
-                    BRUNCH
-                </Link>
-                <span className="bullet">&#x2022;</span>
-                <Link to='/recipes/lunch'>
-                    LUNCH
-                </Link>
-                <span className="bullet">&#x2022;</span>
-                <Link to='/recipes/dinner'>
-                    DINNER
-                </Link>
-                <div className="footer-copyright">
+                <div className="logo-wrapper">
+                    <Link to='/' target='_self'>
+                        <img src={logo} alt="logo-white" />
+                    </Link>
+                </div>
+                <div className="links-wrapper">
+                    <Link to='/recipes/breakfast' className="recipe-link">
+                        BREAKFAST
+                    </Link>
+                    <span className="bullet">&#x2022;</span>
+                    <Link to='/recipes/brunch' className="recipe-link">
+                        BRUNCH
+                    </Link>
+                    <span className="bullet">&#x2022;</span>
+                    <Link to='/recipes/lunch' className="recipe-link">
+                        LUNCH
+                    </Link>
+                    <span className="bullet">&#x2022;</span>
+                    <Link to='/recipes/dinner' className="recipe-link">
+                        DINNER
+                    </Link>
+                </div>
+                <div className="copyright-wrapper">
                     <p>Baby's Food Place</p>
                     <span>copyright &#169; 2021</span>
                 </div>
