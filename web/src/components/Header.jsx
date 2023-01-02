@@ -1,39 +1,47 @@
 import { Link } from "react-router-dom";
+import logo from "../pics/logo_color.svg";
+import "../css/Header.css";
 
 export const Header = () => {
     return (
         <>
         <header>
             <div className="header-wrapper">
-                <Link to='/' target='_self'>
-                    <img src="../pics/logo_color.png" alt="logo-color" />
+                <div className="logo-wrapper">
+                    <Link to='/' target='_self'>
+                    <img src={logo} alt="logo-color" />
                 </Link>
-                <Link to='/recipes/breakfast'>
+                </div>
+                <div className="links-wrapper">
+                    <Link to='/recipes/breakfast' className="recipe-link">
                     BREAKFAST
-                </Link>
-                <span className="bullet">&#x2022;</span>
-                <Link to='/recipes/brunch'>
-                    BRUNCH
-                </Link>
-                <span className="bullet">&#x2022;</span>
-                <Link to='/recipes/lunch'>
-                    LUNCH
-                </Link>
-                <span className="bullet">&#x2022;</span>
-                <Link to='/recipes/dinner'>
-                    DINNER
-                </Link>
-                <button className="login-btn">
-                    <Link to='/login'>
-                        LOG IN
                     </Link>
-                </button>
-                <span>or</span>
-                <button className="register-btn">
-                    <Link to='/register'>
-                        CREATE ACCOUNT
+                    <span className="bullet">&#x2022;</span>
+                    <Link to='/recipes/brunch' className="recipe-link">
+                        BRUNCH
                     </Link>
-                </button>
+                    <span className="bullet">&#x2022;</span>
+                    <Link to='/recipes/lunch' className="recipe-link">
+                        LUNCH
+                    </Link>
+                    <span className="bullet">&#x2022;</span>
+                    <Link to='/recipes/dinner' className="recipe-link">
+                        DINNER
+                    </Link>
+                </div>
+                <div className="buttons-wrapper">
+                    <button className="login-btn">
+                        <Link to='/login' className="login-btn-link">
+                            LOG IN
+                        </Link>
+                    </button>
+                    <span className="or">or</span>
+                    <button className="register-btn">
+                        <Link to='/register' className="register-btn-link">
+                            CREATE ACCOUNT
+                        </Link>
+                    </button>
+                </div>
             </div>
         </header>
         </>
