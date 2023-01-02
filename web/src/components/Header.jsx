@@ -13,34 +13,30 @@ export const Header = () => {
                 </Link>
                 </div>
                 <div className="links-wrapper">
-                    <Link to='/recipes/breakfast' className="recipe-link">
+                    <Link to='/recipes/breakfast' className="recipe-link-header">
                     BREAKFAST
                     </Link>
-                    <span className="bullet">&#x2022;</span>
-                    <Link to='/recipes/brunch' className="recipe-link">
+                    <span className="bullet-header">&#x2022;</span>
+                    <Link to='/recipes/brunch' className="recipe-link-header">
                         BRUNCH
                     </Link>
-                    <span className="bullet">&#x2022;</span>
-                    <Link to='/recipes/lunch' className="recipe-link">
+                    <span className="bullet-header">&#x2022;</span>
+                    <Link to='/recipes/lunch' className="recipe-link-header">
                         LUNCH
                     </Link>
-                    <span className="bullet">&#x2022;</span>
-                    <Link to='/recipes/dinner' className="recipe-link">
+                    <span className="bullet-header">&#x2022;</span>
+                    <Link to='/recipes/dinner' className="recipe-link-header">
                         DINNER
                     </Link>
                 </div>
                 <div className="buttons-wrapper">
-                    <button className="login-btn">
-                        <Link to='/login' className="login-btn-link">
-                            LOG IN
-                        </Link>
-                    </button>
+                    <Link to='/login' className="login-btn-link">
+                        <button className="login-btn">LOG IN</button>
+                    </Link>
                     <span className="or">or</span>
-                    <button className="register-btn">
-                        <Link to='/register' className="register-btn-link">
-                            CREATE ACCOUNT
-                        </Link>
-                    </button>
+                    <Link to='/register' className="register-btn-link">
+                        <button className="register-btn">CREATE ACCOUNT</button>
+                    </Link>
                 </div>
             </div>
         </header>
@@ -48,7 +44,4 @@ export const Header = () => {
     )
 };
 
-// zoshto ne se pokazhuva .svg slika
-// koj font se koristi
-// koi boi se koristat
 // slikite za receptite od kade se

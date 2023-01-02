@@ -13,19 +13,19 @@ export const Footer = () => {
                     </Link>
                 </div>
                 <div className="links-wrapper">
-                    <Link to='/recipes/breakfast' className="recipe-link">
+                    <Link to='/recipes/breakfast' className="recipe-link-footer">
                         BREAKFAST
                     </Link>
-                    <span className="bullet">&#x2022;</span>
-                    <Link to='/recipes/brunch' className="recipe-link">
+                    <span className="bullet-footer">&#x2022;</span>
+                    <Link to='/recipes/brunch' className="recipe-link-footer">
                         BRUNCH
                     </Link>
-                    <span className="bullet">&#x2022;</span>
-                    <Link to='/recipes/lunch' className="recipe-link">
+                    <span className="bullet-footer">&#x2022;</span>
+                    <Link to='/recipes/lunch' className="recipe-link-footer">
                         LUNCH
                     </Link>
-                    <span className="bullet">&#x2022;</span>
-                    <Link to='/recipes/dinner' className="recipe-link">
+                    <span className="bullet-footer">&#x2022;</span>
+                    <Link to='/recipes/dinner' className="recipe-link-footer">
                         DINNER
                     </Link>
                 </div>
