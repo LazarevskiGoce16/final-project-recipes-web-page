@@ -11,8 +11,8 @@ footer {
 }
 
 .footer-wrapper {
-    margin: 0px 180px;
-    padding: 50px 0px;
+    margin: 0px 150px;
+    padding: 60px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
