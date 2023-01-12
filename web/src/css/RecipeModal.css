@@ -69,7 +69,7 @@ body.active-modal {
 .modal-bkg-pic {
     width: 412px;
     height: 243px;
-
+    object-fit: cover;
 }
 
 .modal-body {
