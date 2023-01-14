@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@300&display=swap');
+
 html, body {
     width: 100%;
     margin: 0 auto;
     background-color: #F8F7F2;
+    font-family: 'Roboto Slab', serif;
 }
 
 header {
     width: 100%;
-    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-24) var(--unnamed-font-family-roboto);
-    font: normal normal bold 18px/24px Roboto;
+    font: normal normal bold 18px/20px Roboto;
     background-color: #F8F7F2;
 }
 
@@ -19,7 +22,9 @@ header {
 }
 
 .links-wrapper {
-    justify-items: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .recipe-link-header {
@@ -40,11 +45,13 @@ header {
 .bullet-header {
     color: #F0972A;
     font-weight: bolder;
-    margin: 0px 15px;
+    margin: 0px 20px;
     opacity: 1;
+    font-size: xx-large;
 }
 
 .login-btn {
+    font: normal normal bold 14px/12px Roboto;
     background-color: #F8F7F2;
     color: #A5A5A5;
     text-align: center;
@@ -75,6 +82,7 @@ header {
 }
 
 .register-btn {
+    font: normal normal bold 14px/12px Roboto;
     border: 0px;
     border-radius: 5px;
     padding: 14px 24px;
