@@ -12,7 +12,7 @@ header {
 }
 
 .header-wrapper {
-    margin: 50px 150px;
+    margin: 50px 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,7 +40,7 @@ header {
 .bullet-header {
     color: #F0972A;
     font-weight: bolder;
-    margin: 0px 11px;
+    margin: 0px 15px;
     opacity: 1;
 }
 
