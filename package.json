@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./services/proxy/index.js & node ./services/auth/index.js & node ./services/posts/index.js & node ./services/storage/index.js",
+    "proxy": "node ./services/proxy/index.js",
+    "auth": "node ./services/auth/index.js",
+    "recipes": "node ./services/recipes/index.js",
+    "storage": "node ./services/storage/index.js"
   },
   "keywords": [],
   "author": "",
