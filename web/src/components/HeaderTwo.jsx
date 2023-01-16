@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import logo from "../pics/logo_color.svg";
 import "../css/Header.css";
+import "../css/HeaderTwo.css";
 
-export const Header = () => {
+export const HeaderTwo = () => {
     return (
         <>
         <header>
-            <div className="header-wrapper">
+            <div className="header-two-wrapper">
                 <div className="logo-wrapper">
                     <Link to='/' target='_self'>
                     <img src={logo} alt="logo-color" />
@@ -29,13 +30,17 @@ export const Header = () => {
                         DINNER
                     </Link>
                 </div>
-                <div className="buttons-wrapper">
-                    <Link to='/login' className="login-btn-link">
-                        <button className="login-btn">LOG IN</button>
+                <div className="links-wrapper-two">
+                    <Link to='/my-recipes' className="recipe-link-header-two my-recipes-link">
+                        MY RECIPES
                     </Link>
-                    <span className="or">or</span>
-                    <Link to='/register' className="register-btn-link">
-                        <button className="register-btn">CREATE ACCOUNT</button>
+                    <span className="bullet-header-two">&#x2022;</span>
+                    <Link to='/my-profile' className="recipe-link-header-two my-profile-link">
+                        MY PROFILE
+                    </Link>
+                    <span className="bullet-header-two">&#x2022;</span>
+                    <Link to='/login' className="recipe-link-header-two log-out-link">
+                        LOG OUT
                     </Link>
                 </div>
             </div>

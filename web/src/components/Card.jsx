@@ -1,6 +1,19 @@
+// import axios from 'axios';
+// import { useEffect } from 'react';
 import '../css/Card.css';
 
 export const Card = ({title, imageUrl, body, courseType, time, persons, stars, nextArrows}) => {
+
+    // useEffect(() => {
+    //     axios.get(`http://127.0.0.1:10003/${id}`)
+    //         .then(res => {
+    //             console.log(res);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }, []);
+
     return (
         <div className="card-container">
             <div className="image-container">
