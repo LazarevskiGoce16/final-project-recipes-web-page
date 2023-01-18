@@ -1,10 +1,27 @@
+import axios from "axios";
 import { Card } from "./Card";
 import timeClock from '../pics/icon_time.svg';
 import plate from '../pics/icon_plate.svg';
 import star from '../pics/icon_star.svg';
 import nextArrows from '../pics/icon_arrows_white.svg';
+import { useEffect } from "react";
 
 export const Main = () => {
+    useEffect(() => {
+        axios.get('http://127.0.0.1:10003', {
+            headers: {
+                "Content-Type": "application/json",   
+            }
+        })
+        .then(res => {
+            res.headers("Access-Control-Allow-Origin", "*");
+            console.log(res.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
+
     return (
         <>
         <h1>Main Page</h1>

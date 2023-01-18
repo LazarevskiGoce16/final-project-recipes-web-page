@@ -1,5 +1,7 @@
 export const MyRecipes = () => {
     return (
-        <h1>My Recipes Page</h1>
+        <>
+        <h1>My Recipes page</h1>
+        </>
     )
 };
