@@ -208,5 +208,5 @@ input::placeholder {
 
 textarea::placeholder {
     color: #A5A5A5;
-    padding-left: 5px;
+    padding-right: 5px;
 }
