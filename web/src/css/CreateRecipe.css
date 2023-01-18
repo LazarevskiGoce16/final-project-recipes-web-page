@@ -38,6 +38,12 @@
     background-color: #F0972A;
     padding: 8px;
     border-radius: 50%;
+    transition: 0.2s;
+}
+
+.return-btn:hover {
+    background-color: #ad5f00;
+    transition: 0.2s;
 }
 
 .create-recipe-content {
