@@ -39,6 +39,7 @@
     padding: 8px;
     border-radius: 50%;
     transition: 0.2s;
+    box-shadow: 0px 3px 6px #00000029;
 }
 
 .return-btn:hover {
@@ -189,7 +190,7 @@ input::placeholder {
 .create-recipe-right-content textarea {
     font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-roboto);
     font: normal normal 500 14px/19px Roboto;
-    width: 385px;
+    width: 390px;
     height: 284px;
     margin-top: 10px;
     padding: 10px;
