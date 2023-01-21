@@ -1,5 +1,3 @@
-// import axios from 'axios';
-// import { useEffect } from 'react';
 import timeClock from '../pics/icon_time.svg';
 import plate from '../pics/icon_plate.svg';
 import star from '../pics/icon_star.svg';
@@ -14,16 +12,6 @@ export const Card = ({title, imageUrl, body, courseType, persons, stars, time}) 
     const cardClick = () => {
         setShowModal(prevState => !prevState)
     };
-
-    // useEffect(() => {
-    //     axios.get(`http://127.0.0.1:10003/${id}`)
-    //         .then(res => {
-    //             console.log(res);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // }, []);
 
     return (
         <>

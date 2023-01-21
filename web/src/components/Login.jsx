@@ -22,7 +22,7 @@ export const Login = () => {
                     <div className='login-right-content'>
                         <label htmlFor="">Email</label>
                         <br />
-                        <input type="text" name="email" className='email-input' placeholder='user@domain.com'/>
+                        <input type="email" name="email" className='email-input' placeholder='user@domain.com'/>
                         <br />
                         <label htmlFor="">Password</label>
                         <br />
