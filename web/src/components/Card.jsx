@@ -1,8 +1,19 @@
 // import axios from 'axios';
 // import { useEffect } from 'react';
+import timeClock from '../pics/icon_time.svg';
+import plate from '../pics/icon_plate.svg';
+import star from '../pics/icon_star.svg';
+import nextArrows from '../pics/icon_arrows_white.svg';
+import { RecipeModal } from './RecipeModal';
+import { useState } from 'react';
 import '../css/Card.css';
 
-export const Card = ({title, imageUrl, body, courseType, time, persons, stars, nextArrows}) => {
+export const Card = ({title, imageUrl, body, courseType}) => {
+    const [showModal, setShowModal] = useState(false);
+
+    const cardClick = () => {
+        setShowModal(prevState => !prevState)
+    };
 
     // useEffect(() => {
     //     axios.get(`http://127.0.0.1:10003/${id}`)
@@ -15,7 +26,8 @@ export const Card = ({title, imageUrl, body, courseType, time, persons, stars, n
     // }, []);
 
     return (
-        <div className="card-container">
+        <>
+        <div className="card-container" onClick={cardClick}>
             <div className="image-container">
                 <span>{courseType}</span>
                 <img src={imageUrl} alt='coverImg' />
@@ -27,16 +39,20 @@ export const Card = ({title, imageUrl, body, courseType, time, persons, stars, n
                 <p>{body}</p>
             </div>
             <div className='card-facilities'>
-                <img src={time} alt='clock' className='clock-img'/>
+                <img src={timeClock} alt='clock' className='clock-img'/>
                 <span className='time-text'>45 min</span>
-                <img src={persons} alt='plate' className='plate-img'/>
+                <img src={plate} alt='plate' className='plate-img'/>
                 <span className='persons-text'>4 persons</span>
-                <img src={stars} alt='stars' className='stars-img'/>
+                <img src={star} alt='stars' className='stars-img'/>
                 <span className='stars-text'>28</span>
                 <button className='next-arrows-btn'>
                     <img src={nextArrows} alt='nextArrows' />
                 </button>
             </div>
         </div>
+        {showModal && <RecipeModal 
+            setShow={setShowModal}
+        />}
+        </>
     )
 };

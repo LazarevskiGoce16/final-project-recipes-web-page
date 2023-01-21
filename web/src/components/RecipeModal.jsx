@@ -1,38 +1,25 @@
-import { useState } from "react";
 import closeBtn from '../pics/icon_close.svg';
 import timeClock from '../pics/icon_time.svg';
 import plate from '../pics/icon_plate.svg';
 import star from '../pics/icon_star.svg';
 import '../css/RecipeModal.css';
 
-export const RecipeModal = () => {
-    const [modal, setModal] = useState(false);
-
-    const toggleModal = () => {
-        setModal(!modal)
+export const RecipeModal = ({setShow}) => {
+    const closedModal = () => {
+        setShow(false);
     };
-
-    if(modal) {
-        document.body.classList.add('active-modal')
-    } else {
-        document.body.classList.remove('active-modal')
-    }
 
     return (
         <>
-        <button
-            onClick={toggleModal}
-        >Open Modal</button>
-        {modal && (
             <div className="modal">
                 <div 
-                    onClick={toggleModal}
+                    onClick={closedModal}
                     className="overlay"></div>
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2>Mac & Bacon (and cheese)</h2>
                         <button 
-                            onClick={toggleModal}
+                            onClick={closedModal}
                             className='close-btn'>
                             <img src={closeBtn} alt='close' />
                         </button>
@@ -74,7 +61,6 @@ export const RecipeModal = () => {
                     </div>
                 </div>
             </div>
-        )}
         </>      
     )
 };

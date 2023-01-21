@@ -1,5 +1,5 @@
-body.active-modal {
-    overflow-y: hidden;
+.modal {
+    z-index: 999;
 }
 
 .modal, .overlay {
@@ -13,8 +13,6 @@ body.active-modal {
 }
 
 .overlay {
-    /* background: var(--softwhite) 0% 0% no-repeat padding-box;
-    background: #F8F7F2 0% 0% no-repeat padding-box; */
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
 }
