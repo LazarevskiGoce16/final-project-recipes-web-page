@@ -3,7 +3,16 @@ const recipes = require('../../../pkg/recipes');
 const getAll = async (req, res) => {
     try {
         let rs = await recipes.getAll();
-        res.status(200).send(rs);
+        const mpr = rs.sort((a, b) => {
+            if(Number(a.stars) < Number(b.stars)) {
+                return 1;
+            } else if(Number(a.stars) > Number(b.stars)) {
+                return -1;
+            }
+            return 0;
+        });
+        const fn = [];
+        res.status(200).send({mpr: mpr, fn: fn});
     } catch (err) {
         return res.status(500).send("Internal Server Error!");
     }
@@ -17,15 +26,6 @@ const getMine = async (req, res) => {
         return res.status(500).send("Internal Server Error!");   
     }
 };
-
-// const getOthers = async (req, res) => {
-//     try {
-//         let rs = await recipes.getUserRecipes();
-//         res.status(200).send(rs);
-//     } catch (err) {
-//         return res.status(500).send("Internal Server Error!");
-//     }
-// };
 
 const create = async (req, res) => {
     try {

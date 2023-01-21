@@ -8,7 +8,9 @@ const Recipe = mongoose.model(
         preparation_time: Number,
         num_of_people: Number,
         description: String,
-        full_recipe: String
+        full_recipe: String,
+        stars: Number,
+        date_created: Date
     },
     'recipes'
 );

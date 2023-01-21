@@ -3,21 +3,25 @@ const config = require('../../pkg/config');
 const { expressjwt : jwt } = require('express-jwt');
 const auth = require('./handlers/auth');
 const db = require('../../pkg/db');
+const cors = require('cors');
 
 db.init();
 
 const api = express();
 
-api.use(express.json());
-api.use(jwt({
-    algorithms: ['HS256'],
-    secret: config.get('security').jwt_secret
-}).unless({
-    path: [
-        '/api/v1/auth/create-account',
-        '/api/v1/auth/login'
-    ]
+api.use(cors({
+    origin: '*'
 }));
+api.use(express.json());
+// api.use(jwt({
+//     algorithms: ['HS256'],
+//     secret: config.get('security').jwt_secret
+// }).unless({
+//     path: [
+//         '/api/v1/auth/create-account',
+//         '/api/v1/auth/login'
+//     ]
+// }));
 
 api.post('/api/v1/auth/create-account', auth.create);
 api.post('/api/v1/auth/login', auth.login);
