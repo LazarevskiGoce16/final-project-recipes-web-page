@@ -8,7 +8,7 @@ import { RecipeModal } from './RecipeModal';
 import { useState } from 'react';
 import '../css/Card.css';
 
-export const Card = ({title, imageUrl, body, courseType}) => {
+export const Card = ({title, imageUrl, body, courseType, persons, stars, time}) => {
     const [showModal, setShowModal] = useState(false);
 
     const cardClick = () => {
@@ -40,11 +40,11 @@ export const Card = ({title, imageUrl, body, courseType}) => {
             </div>
             <div className='card-facilities'>
                 <img src={timeClock} alt='clock' className='clock-img'/>
-                <span className='time-text'>45 min</span>
+                <span className='time-text'>{time} min</span>
                 <img src={plate} alt='plate' className='plate-img'/>
-                <span className='persons-text'>4 persons</span>
+                <span className='persons-text'>{persons} persons</span>
                 <img src={star} alt='stars' className='stars-img'/>
-                <span className='stars-text'>28</span>
+                <span className='stars-text'>{stars}</span>
                 <button className='next-arrows-btn'>
                     <img src={nextArrows} alt='nextArrows' />
                 </button>
