@@ -1,8 +1,25 @@
+import axios from 'axios';
+import { useEffect } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import '../css/Register.css';
 
 export const Register = () => {
+    useEffect(() => {
+        axios.post('http://127.0.0.1:10002/api/v1/auth/login', {
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
+
     return (
         <>
         <Header />

@@ -31,10 +31,13 @@
 }
 
 .main-most-popular-recipes-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    grid-column-gap: 78px;
+    grid-row-gap: 64px;
     margin-bottom: 120px;
 }
 
-.main-recipe-card {
+/* .main-recipe-card {
     margin-right: 78px;
-}
+} */
