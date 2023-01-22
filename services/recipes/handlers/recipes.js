@@ -3,6 +3,14 @@ const recipes = require('../../../pkg/recipes');
 const getAll = async (req, res) => {
     try {
         let rs = await recipes.getAll();
+        const fn = rs.reverse((a, b) => {
+            if(Date(a.published_on) < Date(b.published_on)) {
+                return 1;
+            } else if(Date(a.published_on) > Date(b.published_on)) {
+                return -1;
+            }
+            return 0;
+        }).slice(0, 3);
         const mpr = rs.sort((a, b) => {
             if(Number(a.stars) < Number(b.stars)) {
                 return 1;
@@ -10,9 +18,8 @@ const getAll = async (req, res) => {
                 return -1;
             }
             return 0;
-        });
-        const fn = [];
-        res.status(200).send({mpr: mpr, fn: fn});
+        }).slice(0, 6);
+        res.status(200).send({fn: fn, mpr: mpr});
     } catch (err) {
         return res.status(500).send("Internal Server Error!");
     }
@@ -31,7 +38,7 @@ const create = async (req, res) => {
     try {
         let payload = {
             ...req.body,
-            author_id: req.auth.uid,
+            // author_id: req.auth.uid,
             published_on: new Date()
         };
         let c = await recipes.create(payload);

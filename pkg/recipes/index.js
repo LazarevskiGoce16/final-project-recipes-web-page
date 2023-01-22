@@ -10,7 +10,7 @@ const Recipe = mongoose.model(
         description: String,
         full_recipe: String,
         stars: Number,
-        date_created: Date
+        published_on: Date
     },
     'recipes'
 );
