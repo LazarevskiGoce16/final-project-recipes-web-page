@@ -1,24 +1,55 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import '../css/Register.css';
 
 export const Register = () => {
-    useEffect(() => {
-        axios.post('http://127.0.0.1:10002/api/v1/auth/login', {
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
-            }
-        })
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [birthday, setBirthday] = useState('');
+    const [password, setPassword] = useState('');
+    const [jwt, setJwt] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(e.target.value);
+
+        try {
+            const res = await axios.post('http://127.0.0.1:10002/api/v1/auth/create-account', {
+                firstName, lastName, email, birthday, password
+            })
+            localStorage.setItem('jwt', res.data.token);
+            setJwt(res.data.token);
+            console.log('JWT saved to local storage!');
+        } catch (err) {
             console.log(err);
-        })
-    }, []);
+        }
+    }; 
+
+    // useEffect(() => {
+    //     axios.post('http://127.0.0.1:10002/api/v1/auth/create-account', {
+    //         firstName,
+    //         lastName,
+    //         email,
+    //         birthday,
+    //         password,
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Access-Control-Allow-Origin": "*"
+    //         }
+    //     })
+    //     .then(res => {
+    //         localStorage.setItem('jwt', res.data.token);
+    //         setJwt(res.data.token);
+    //         console.log('JWT saved to local storage!');
+    //         console.log(res);
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+    // }, []);
 
     return (
         <>
@@ -40,30 +71,37 @@ export const Register = () => {
                         <div className='left-column'>
                             <label htmlFor="">First Name</label>
                             <br />
-                            <input type="text" placeholder='John'/>
+                            <input type="text" placeholder='John' onChange={e => setFirstName(e.target.value)} required/>
                             <br />
                             <label htmlFor="">Email</label>
                             <br />
-                            <input type="email" placeholder='john@smith.com'/>
+                            <input type="email" placeholder='john@smith.com' onChange={e => setEmail(e.target.value)} required/>
                             <br />
                             <label htmlFor="">Password</label>
                             <br />
-                            <input type="password" placeholder='********'/>
+                            <input type="password" placeholder='********' onChange={e => setPassword(e.target.value)} required/>
                             <br />
-                            <button className='register-button'>CREATE ACCOUNT</button>
+                            <button className='register-button' onSubmit={handleSubmit}>CREATE ACCOUNT</button>
                         </div>
                         <div className='right-column'>
                             <label htmlFor="">Last Name</label>
                             <br />
-                            <input type="text" placeholder='Smith'/>
+                            <input type="text" placeholder='Smith' onChange={e => setLastName(e.target.value)} required/>
                             <br />
                             <label htmlFor="">Birthday</label>
                             <br />
-                            <input type="date" max='2023-01-01' required pattern="(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})" className='input-date'/>
+                            <input 
+                                type="date" 
+                                max='2023-01-01' 
+                                required 
+                                pattern="(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})" 
+                                className='input-date'
+                                onChange={e => setBirthday(e.target.value)}    
+                            />
                             <br />
                             <label htmlFor="">Repeat Password</label>
                             <br />
-                            <input type="password" placeholder='********'/>
+                            <input type="password" placeholder='********' required/>
                         </div>
                     </div>
                 </div>
