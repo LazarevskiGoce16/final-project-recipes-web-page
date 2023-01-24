@@ -25,6 +25,15 @@ const getAll = async (req, res) => {
     }
 };
 
+const getRecipesByCategory = async (req, res) => {
+    try {
+        let rs = await recipes.getAll();
+        res.status(200).send({rs});
+    } catch (err) {
+        return res.status(500).send("Internal Server Error!");
+    }
+};
+
 const getMine = async (req, res) => {
     try {
         let rs = await recipes.getUserRecipes(req.auth.uid);
@@ -73,6 +82,7 @@ const remove = async (req, res) => {
 
 module.exports = {
     getAll,
+    getRecipesByCategory,
     getMine,
     create,
     update,

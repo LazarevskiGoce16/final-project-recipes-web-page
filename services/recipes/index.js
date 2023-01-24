@@ -19,6 +19,7 @@ api.use(express.json());
 // }));
 
 api.get('/api/v1/auth/recipes', recipes.getAll);
+api.get('/api/v1/auth/recipes/category', recipes.getRecipesByCategory);
 api.get('/api/v1/auth/recipes/me', recipes.getMine);
 
 api.post('/api/v1/auth/recipes', recipes.create);

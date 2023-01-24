@@ -33,7 +33,7 @@ const update = async (id, uid, data) => {
 };
 
 const remove = async (id, uid) => {
-    return Recipe.deleteOne({_id: id, author_id: id});
+    return Recipe.deleteOne({_id: id, author_id: uid});
 };
 
 module.exports = {
