@@ -6,6 +6,9 @@ import { Footer } from "./Footer";
 import "../css/Main.css";
 
 export const Main = () => {
+    const cardBody = 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal';
+    const bkgImgUrl = 'https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667';
+
     const [freshRecipes, setFreshRecipes] = useState([]);
     const [popularRecipes, setPopularRecipes] = useState([]);
     
@@ -38,8 +41,8 @@ export const Main = () => {
                     {freshRecipes.map(recipe => (
                         <Card 
                             title={recipe.title}
-                            imageUrl='https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667'
-                            body='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal'
+                            imageUrl={bkgImgUrl}
+                            body={cardBody}
                             courseType={recipe.category}
                             stars={recipe.stars}
                             persons={recipe.num_of_people}
@@ -55,8 +58,8 @@ export const Main = () => {
                         <div className="main-recipe-card">
                             <Card
                                 title={recipe.title}
-                                imageUrl='https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667'
-                                body='It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal'
+                                imageUrl={bkgImgUrl}
+                                body={cardBody}
                                 courseType={recipe.category}
                                 stars={recipe.stars}
                                 persons={recipe.num_of_people}
