@@ -1,8 +1,21 @@
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { useState, useEffect } from 'react';
 import '../css/Login.css';
 
 export const Login = () => {
+    const [jwt, setJwt] = useState(null);
+
+    useEffect(() => {
+        const jwtFromLocalStorage = localStorage.getItem('jwt');
+        if(jwtFromLocalStorage) {
+            setJwt(jwtFromLocalStorage);
+            console.log('JWT found in local storage!');
+        } else {
+            console.log('JWT not found in local storage!')
+        }
+    }, []);
+
     return (
         <>
         <Header />
@@ -28,7 +41,7 @@ export const Login = () => {
                         <br />
                         <input type="password" name="password" className='password-input' placeholder='********'/>
                         <br />
-                        <button className='login-button'>LOG IN</button>
+                        <button className='login-button' onClick={jwt}>LOG IN</button>
                     </div>
                 </div> 
             </div>
