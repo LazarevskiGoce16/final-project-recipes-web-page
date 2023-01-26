@@ -141,3 +141,7 @@ html, body {
     transition: 0.2s;
     background-color: #536b17;
 }
+
+.register-button:disabled {
+    background-color: #A5A5A5;
+}

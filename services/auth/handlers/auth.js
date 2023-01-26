@@ -9,7 +9,7 @@ const create = async (req, res) => {
             req.body.password.length === 0 ||
             req.body.password !== req.body.password2
         ) {
-            return res.status(400).send("Bad request!");
+            return res.status(400).send("Passwords are not matching or password-length is 0!");
         }
 
         let u = await user.getUserByEmail(req.body.email);

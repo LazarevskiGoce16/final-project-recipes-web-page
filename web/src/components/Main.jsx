@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Card } from "./Card";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import "../css/Main.css";
@@ -38,24 +38,27 @@ export const Main = () => {
                     <h1>Fresh & New</h1>
                 </div>
                 <div className="main-fresh-and-new-content">
-                    {freshRecipes.map(recipe => (
-                        <Card 
-                            title={recipe.title}
-                            imageUrl={bkgImgUrl}
-                            body={cardBody}
-                            courseType={recipe.category}
-                            stars={recipe.stars}
-                            persons={recipe.num_of_people}
-                            time={recipe.preparation_time}
-                        />
+                    {freshRecipes.map((recipe, index) => (
+                        <React.Fragment key={`fresh-and-new-recipe-${index}`}>
+                            <Card 
+                                title={recipe.title}
+                                imageUrl={bkgImgUrl}
+                                body={cardBody}
+                                courseType={recipe.category}
+                                stars={recipe.stars}
+                                persons={recipe.num_of_people}
+                                time={recipe.preparation_time}
+                            />
+                        </React.Fragment>
                     ))}
                 </div>
                 <div className="main-most-popular-recipes-title">
                     <h1>Most Popular Recipes</h1>
                 </div>
                 <div className="main-most-popular-recipes-content">
-                    {popularRecipes.map(recipe => (
-                        <div className="main-recipe-card">
+                    {popularRecipes.map((recipe, index) => (
+                        // <div key={`popular-recipe-${index}`} className="main-recipe-card">
+                        <React.Fragment key={`most-popualar-recipe-${index}`}>
                             <Card
                                 title={recipe.title}
                                 imageUrl={bkgImgUrl}
@@ -65,7 +68,8 @@ export const Main = () => {
                                 persons={recipe.num_of_people}
                                 time={recipe.preparation_time}
                             />
-                        </div>
+                        </React.Fragment>
+                        // </div>
                     ))}
                 </div>
             </div> 

@@ -1,55 +1,37 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import '../css/Register.css';
 
 export const Register = () => {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState('');
     const [password, setPassword] = useState('');
-    const [jwt, setJwt] = useState(null);
+    const [repeatPassword, setRepeatPassword] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(e.target.value);
+    const shouldDisableSubmit = (!password || !repeatPassword) || (password !== repeatPassword);
 
-        try {
-            const res = await axios.post('http://127.0.0.1:10002/api/v1/auth/create-account', {
-                firstName, lastName, email, birthday, password
-            })
-            localStorage.setItem('jwt', res.data.token);
-            setJwt(res.data.token);
-            console.log('JWT saved to local storage!');
-        } catch (err) {
-            console.log(err);
-        }
+    const handleSubmit = () => {
+        axios.post('http://127.0.0.1:10002/api/v1/auth/create-account', {
+            firstName : firstName,
+            lastName : lastName, 
+            email : email,
+            birthday : birthday,
+            password : password,
+            password2 : repeatPassword
+        })
+        .then(() => {
+            navigate('/login');
+        })
+        .catch(err => {
+            console.error(err);
+        })           
     }; 
-
-    // useEffect(() => {
-    //     axios.post('http://127.0.0.1:10002/api/v1/auth/create-account', {
-    //         firstName,
-    //         lastName,
-    //         email,
-    //         birthday,
-    //         password,
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Access-Control-Allow-Origin": "*"
-    //         }
-    //     })
-    //     .then(res => {
-    //         localStorage.setItem('jwt', res.data.token);
-    //         setJwt(res.data.token);
-    //         console.log('JWT saved to local storage!');
-    //         console.log(res);
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
-    // }, []);
 
     return (
         <>
@@ -71,22 +53,22 @@ export const Register = () => {
                         <div className='left-column'>
                             <label htmlFor="">First Name</label>
                             <br />
-                            <input type="text" placeholder='John' onChange={e => setFirstName(e.target.value)} required/>
+                            <input type="text" placeholder='John' onChange={e => setFirstName(e.target.value)} value={firstName} required/>
                             <br />
                             <label htmlFor="">Email</label>
                             <br />
-                            <input type="email" placeholder='john@smith.com' onChange={e => setEmail(e.target.value)} required/>
+                            <input type="email" placeholder='john@smith.com' onChange={e => setEmail(e.target.value)} value={email} required/>
                             <br />
                             <label htmlFor="">Password</label>
                             <br />
-                            <input type="password" placeholder='********' onChange={e => setPassword(e.target.value)} required/>
+                            <input type="password" placeholder='********' onChange={e => setPassword(e.target.value)} value={password} required/>
                             <br />
-                            <button className='register-button' onSubmit={handleSubmit}>CREATE ACCOUNT</button>
+                            <button className='register-button' onClick={handleSubmit} disabled={shouldDisableSubmit}>CREATE ACCOUNT</button>
                         </div>
                         <div className='right-column'>
                             <label htmlFor="">Last Name</label>
                             <br />
-                            <input type="text" placeholder='Smith' onChange={e => setLastName(e.target.value)} required/>
+                            <input type="text" placeholder='Smith' onChange={e => setLastName(e.target.value)} value={lastName} required/>
                             <br />
                             <label htmlFor="">Birthday</label>
                             <br />
@@ -96,12 +78,13 @@ export const Register = () => {
                                 required 
                                 pattern="(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})" 
                                 className='input-date'
-                                onChange={e => setBirthday(e.target.value)}    
+                                onChange={e => setBirthday(e.target.value)}
+                                value={birthday}    
                             />
                             <br />
                             <label htmlFor="">Repeat Password</label>
                             <br />
-                            <input type="password" placeholder='********' required/>
+                            <input type="password" placeholder='********' required onChange={e => setRepeatPassword(e.target.value)} value={repeatPassword}/>
                         </div>
                     </div>
                 </div>
