@@ -18,8 +18,8 @@ export const Register = () => {
 
     const handleSubmit = () => {
         axios.post('http://127.0.0.1:10002/api/v1/auth/create-account', {
-            firstName : firstName,
-            lastName : lastName, 
+            first_name : firstName,
+            last_name : lastName, 
             email : email,
             birthday : birthday,
             password : password,
