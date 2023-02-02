@@ -33,7 +33,7 @@ footer {
 
 .recipe-link-footer:hover {
     transition: 0.2s;
-    color: rgba(255, 255, 255, 0.425);
+    transform: scale(1.15);
 }
 
 .bullet-footer {
