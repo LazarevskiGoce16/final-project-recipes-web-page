@@ -30,7 +30,7 @@ const login = async (req, res) => {
     try {
         let u = await user.getUserByEmail(req.body.email);
         if(!u) {
-            return res.status(400).send("Bad request. Bad login credentials!");
+            return res.status(400).send("Bad request. User doesn't exist!");
         }
 
         if(!bcrypt.compareSync(req.body.password, u.password)) {

@@ -13,15 +13,15 @@ api.use(cors({
     origin: '*'
 }));
 api.use(express.json());
-// api.use(jwt({
-//     algorithms: ['HS256'],
-//     secret: config.get('security').jwt_secret
-// }).unless({
-//     path: [
-//         '/api/v1/auth/create-account',
-//         '/api/v1/auth/login'
-//     ]
-// }));
+api.use(jwt({
+    algorithms: ['HS256'],
+    secret: config.get('security').jwt_secret
+}).unless({
+    path: [
+        '/api/v1/auth/create-account',
+        '/api/v1/auth/login'
+    ]
+}));
 
 api.post('/api/v1/auth/create-account', auth.create);
 api.post('/api/v1/auth/login', auth.login);

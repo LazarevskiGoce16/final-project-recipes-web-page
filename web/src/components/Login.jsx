@@ -1,20 +1,29 @@
+import axios from 'axios';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/Login.css';
 
 export const Login = () => {
-    const [jwt, setJwt] = useState(null);
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    useEffect(() => {
-        const jwtFromLocalStorage = localStorage.getItem('jwt');
-        if(jwtFromLocalStorage) {
-            setJwt(jwtFromLocalStorage);
-            console.log('JWT found in local storage!');
-        } else {
-            console.log('JWT not found in local storage!')
-        }
-    }, []);
+    const handleSubmit = () => {
+        axios.post('http://127.0.0.1:10002/api/v1/auth/login', {
+            email : email,
+            password : password
+        })
+        .then(res => {
+            localStorage.setItem('jwt', res.data);
+            console.log(`User log in OK! Token: ${res.data.token}`);
+            navigate('/my-profile');
+        })
+        .catch(err => {
+            console.log(err, 'User credentials not OK!');
+        })
+    };
 
     return (
         <>
@@ -35,13 +44,13 @@ export const Login = () => {
                     <div className='login-right-content'>
                         <label htmlFor="">Email</label>
                         <br />
-                        <input type="email" name="email" className='email-input' placeholder='user@domain.com'/>
+                        <input type="email" name="email" className='email-input' placeholder='user@domain.com' onChange={e => setEmail(e.target.value)} value={email}/>
                         <br />
                         <label htmlFor="">Password</label>
                         <br />
-                        <input type="password" name="password" className='password-input' placeholder='********'/>
+                        <input type="password" name="password" className='password-input' placeholder='********' onChange={e => setPassword(e.target.value)} value={password}/>
                         <br />
-                        <button className='login-button' onClick={jwt}>LOG IN</button>
+                        <button className='login-button' onClick={handleSubmit}>LOG IN</button>
                     </div>
                 </div> 
             </div>
