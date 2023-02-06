@@ -44,11 +44,11 @@ export const Login = () => {
                     <div className='login-right-content'>
                         <label htmlFor="">Email</label>
                         <br />
-                        <input type="email" name="email" className='email-input' placeholder='user@domain.com' onChange={e => setEmail(e.target.value)} value={email}/>
+                        <input type="email" name="email" className='email-input' placeholder='user@domain.com' onChange={e => setEmail(e.target.value)} value={email} required/>
                         <br />
                         <label htmlFor="">Password</label>
                         <br />
-                        <input type="password" name="password" className='password-input' placeholder='********' onChange={e => setPassword(e.target.value)} value={password}/>
+                        <input type="password" name="password" className='password-input' placeholder='********' onChange={e => setPassword(e.target.value)} value={password} required/>
                         <br />
                         <button className='login-button' onClick={handleSubmit}>LOG IN</button>
                     </div>

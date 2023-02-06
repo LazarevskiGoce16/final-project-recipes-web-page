@@ -17,11 +17,16 @@ const create = async (data) => {
     return u.save();
 };
 
+const update = async (data) => {
+    return User.updateOne(data);
+};
+
 const getUserByEmail = async (email) => {
     return User.findOne({email});
 };
 
 module.exports = {
     create,
+    update,
     getUserByEmail
 };

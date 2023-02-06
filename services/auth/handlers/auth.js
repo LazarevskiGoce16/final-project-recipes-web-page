@@ -50,6 +50,19 @@ const login = async (req, res) => {
     }
 };
 
+const updateUser = async (req, res) => {
+    try {
+        req.body.password = bcrypt.hashSync(req.body.password);
+        let payload = {
+            ...req.body
+        };
+        await user.update(payload);
+        return res.status(204).send("");
+    } catch (err) {
+        return res.status(500).send("Internal Server Error!");
+    }
+};
+
 const validate = (req, res) => {
     console.log(req.auth);
     return res.status(200).send(req.auth);
@@ -58,5 +71,6 @@ const validate = (req, res) => {
 module.exports = {
     create,
     login,
+    updateUser,
     validate
 };

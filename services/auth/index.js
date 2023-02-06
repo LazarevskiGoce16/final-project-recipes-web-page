@@ -19,12 +19,14 @@ api.use(jwt({
 }).unless({
     path: [
         '/api/v1/auth/create-account',
-        '/api/v1/auth/login'
+        '/api/v1/auth/login',
+        '/api/v1/auth/update-user'
     ]
 }));
 
 api.post('/api/v1/auth/create-account', auth.create);
 api.post('/api/v1/auth/login', auth.login);
+api.put('/api/v1/auth/update-user', auth.updateUser);
 
 api.post('/api/v1/auth/validate-token', auth.validate);
 
