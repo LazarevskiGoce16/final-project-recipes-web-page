@@ -1,15 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
-import { Main } from './components/Main';
-import { Login } from './components/Login';
-import { Register } from './components/Register';
+// PAGES
+import { Main } from './pages/Main';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { Breakfast } from './pages/Breakfast';
+import { Brunch } from './pages/Brunch';
+import { Lunch } from './pages/Lunch';
+import { Dinner } from './pages/Dinner';
+import { MyRecipes } from './pages/MyRecipes';
+import { CreateRecipe } from './pages/CreateRecipe';
+import { MyProfile } from './pages/MyProfile';
+// COMPONENTS
 import { RecipeModal } from './components/RecipeModal';
-import { Breakfast } from './components/Breakfast';
-import { Brunch } from './components/Brunch';
-import { Lunch } from './components/Lunch';
-import { Dinner } from './components/Dinner';
-import { MyRecipes } from './components/MyRecipes';
-import { CreateRecipe } from './components/CreateRecipe';
-import { MyProfile } from './components/MyProfile';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 

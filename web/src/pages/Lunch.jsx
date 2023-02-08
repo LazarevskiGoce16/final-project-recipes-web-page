@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Card } from "./Card";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { Card } from "../components/Card";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 import { useState, useEffect } from "react";
 import "../css/Categories.css";
 

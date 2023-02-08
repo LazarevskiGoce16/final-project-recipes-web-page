@@ -1,8 +1,8 @@
 import axios from "axios";
-import { Card } from "./Card";
 import React, { useEffect, useState } from "react";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { Card } from "../components/Card";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 import "../css/Main.css";
 
 export const Main = () => {

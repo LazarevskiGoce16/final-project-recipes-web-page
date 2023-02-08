@@ -1,5 +1,5 @@
-import { HeaderTwo } from './HeaderTwo';
-import { Footer } from './Footer';
+import { HeaderTwo } from '../components/HeaderTwo';
+import { Footer } from '../components/Footer';
 import { Link } from 'react-router-dom';
 import returnBtn from '../pics/icon_back_white.svg';
 import '../css/CreateRecipe.css';

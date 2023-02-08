@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { HeaderTwo } from './HeaderTwo';
-import { Footer } from './Footer';
+import { HeaderTwo } from '../components/HeaderTwo';
+import { Footer } from '../components/Footer';
 import '../css/MyProfile.css';
 
 export const MyProfile = () => {

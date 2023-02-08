@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Header } from './Header';
-import { Footer } from './Footer';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 import '../css/Register.css';
 
 export const Register = () => {

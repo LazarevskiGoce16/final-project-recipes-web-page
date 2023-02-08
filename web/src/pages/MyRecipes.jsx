@@ -1,5 +1,5 @@
-import { HeaderTwo } from './HeaderTwo';
-import { Footer } from './Footer';
+import { HeaderTwo } from '../components/HeaderTwo';
+import { Footer } from '../components/Footer';
 import { Link } from 'react-router-dom';
 import plusBtn from '../pics/icon_plus_white.svg';
 import trashBtn from '../pics/icon_trashcan.svg';
