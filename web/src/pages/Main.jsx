@@ -14,10 +14,12 @@ export const Main = () => {
     const [popularRecipes, setPopularRecipes] = useState([]);
     
     useEffect(() => {
+        const token = localStorage.getItem('jwt');
         axios.get('http://127.0.0.1:10003/api/v1/auth/recipes', {
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",  
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": token ? `Bearer ${token}` : "" 
             }
         })
         .then(res => {
