@@ -19,12 +19,13 @@ export const Login = () => {
             password : password
         })
         .then(res => {
-            localStorage.setItem('jwt', res.data);
+            localStorage.setItem('jwt', res.data.token);
+            alert(`User log in OK! Token: ${res.data.token}`);
             console.log(`User log in OK! Token: ${res.data.token}`);
             navigate('/my-profile');
         })
         .catch(err => {
-            console.log(err, 'User credentials not OK!');
+            console.error(err, 'User credentials not OK!');
         })
     };
 
