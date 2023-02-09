@@ -38,7 +38,12 @@ export const Card = ({title, imageUrl, body, courseType, persons, stars, time}) 
                 </button>
             </div>
         </div>
-        {showModal && <RecipeModal 
+        {showModal && <RecipeModal
+            title={title}
+            category={courseType}
+            time={time}
+            persons={persons}
+            stars={stars}
             setShow={setShowModal}
         />}
         </>

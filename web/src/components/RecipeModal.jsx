@@ -4,7 +4,7 @@ import plate from '../pics/icon_plate.svg';
 import star from '../pics/icon_star.svg';
 import '../css/RecipeModal.css';
 
-export const RecipeModal = ({setShow}) => {
+export const RecipeModal = ({setShow, title, category,time, persons, stars}) => {
     const closedModal = () => {
         setShow(false);
     };
@@ -17,7 +17,7 @@ export const RecipeModal = ({setShow}) => {
                 className="overlay"></div>
             <div className="modal-content">
                 <div className="modal-header">
-                    <h2>Mac & Bacon (and cheese)</h2>
+                    <h2>{title}</h2>
                     <button 
                         onClick={closedModal}
                         className='close-btn'>
@@ -32,7 +32,7 @@ export const RecipeModal = ({setShow}) => {
                         <div
                             className="left-body-title">
                             <h3>Best Served For</h3>
-                            <span>lunch</span>
+                            <span>{category}</span>
                         </div>
                         <div
                             className="left-body-text">
@@ -41,11 +41,11 @@ export const RecipeModal = ({setShow}) => {
                         <div
                             className="left-body-facilities">
                             <img src={timeClock} alt="clock" className="clock-img-modal"/>
-                            <span>45 min</span>
+                            <span>{time} min</span>
                             <img src={plate} alt="plate" className="plate-img-modal"/>
-                            <span>4 persons</span>
+                            <span>{persons} persons</span>
                             <img src={star} alt="stars" className="star-img-modal"/>
-                            <span>28</span>
+                            <span>{stars}</span>
                         </div>
                     </div>
                     <div className="right-body">
