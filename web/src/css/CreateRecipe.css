@@ -211,3 +211,7 @@ textarea::placeholder {
     color: #A5A5A5;
     padding-right: 5px;
 }
+
+.save-button:disabled {
+    background-color: #A5A5A5;
+}

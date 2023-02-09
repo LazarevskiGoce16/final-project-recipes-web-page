@@ -3,9 +3,12 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as strings from '../templates.json';
 import '../css/Login.css';
 
 export const Login = () => {
+    const {login_page_paragraph} = strings;
+
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -39,18 +42,36 @@ export const Login = () => {
                             <span style={{color: "#F0972A"}}>Welcome to </span>
                             <span style={{color: "#626262"}}>Baby's</span>
                         </h1>
-                        <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+                        <p>{login_page_paragraph}</p>
                     </div>
                     <div className='login-right-content'>
                         <label htmlFor="">Email</label>
                         <br />
-                        <input type="email" name="email" className='email-input' placeholder='user@domain.com' onChange={e => setEmail(e.target.value)} value={email} required/>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            className='email-input' 
+                            placeholder='user@domain.com' 
+                            onChange={e => setEmail(e.target.value)} 
+                            value={email} 
+                            required
+                        />
                         <br />
                         <label htmlFor="">Password</label>
                         <br />
-                        <input type="password" name="password" className='password-input' placeholder='********' onChange={e => setPassword(e.target.value)} value={password} required/>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            className='password-input' 
+                            placeholder='********' 
+                            onChange={e => setPassword(e.target.value)}
+                            value={password} 
+                            required
+                        />
                         <br />
-                        <button className='login-button' onClick={handleSubmit}>LOG IN</button>
+                        <button className='login-button' onClick={handleSubmit}>
+                            LOG IN
+                        </button>
                     </div>
                 </div> 
             </div>

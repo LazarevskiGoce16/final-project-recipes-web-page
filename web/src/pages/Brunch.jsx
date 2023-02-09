@@ -3,10 +3,11 @@ import { Card } from "../components/Card";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { useState, useEffect } from "react";
+import * as strings from "../templates.json";
 import "../css/Categories.css";
 
 export const Brunch = () => {
-    const cardBody = 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal';
+    const {card_body} = strings;
     const bkgImgUrl = 'https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667';
 
     const [category, setCategory] = useState([]);
@@ -46,7 +47,7 @@ export const Brunch = () => {
                         <Card 
                             title={c.title}
                             imageUrl={bkgImgUrl}
-                            body={cardBody}
+                            body={card_body}
                             courseType={c.category}
                             stars={c.stars}
                             persons={c.num_of_people}

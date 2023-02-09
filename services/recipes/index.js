@@ -13,10 +13,10 @@ api.use(cors({
     origin: '*'
 }));
 api.use(express.json());
-// api.use(jwt.expressjwt({
-//     algorithms: ['HS256'],
-//     secret: config.get('security').jwt_secret
-// }));
+api.use(jwt.expressjwt({
+    algorithms: ['HS256'],
+    secret: config.get('security').jwt_secret
+}));
 
 api.get('/api/v1/auth/recipes', recipes.getAll);
 api.get('/api/v1/auth/recipes/category', recipes.getRecipesByCategory);
@@ -24,7 +24,7 @@ api.get('/api/v1/auth/recipes/me', recipes.getMine);
 
 api.post('/api/v1/auth/recipes', recipes.create);
 api.put('/api/v1/auth/recipes/:id', recipes.update);
-api.put('/api/v1/auth/recipes/:id', recipes.remove);
+api.delete('/api/v1/auth/recipes/:id', recipes.remove);
 
 api.listen(config.get('services').recipes.port, err => {
     if(err) {

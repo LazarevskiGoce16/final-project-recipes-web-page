@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import * as strings from '../templates.json';
 import '../css/Register.css';
 
 export const Register = () => {
+    const {register_page_paragraph} = strings;
+    const {date_pattern} = strings;
+
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -14,7 +18,8 @@ export const Register = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
 
-    const shouldDisableSubmit = (!password || !repeatPassword) || (password !== repeatPassword);
+    const shouldDisableSubmit = (!password || !repeatPassword) || 
+    (password !== repeatPassword);
 
     const handleSubmit = () => {
         axios.post('http://127.0.0.1:10002/api/v1/auth/create-account', {
@@ -47,44 +52,79 @@ export const Register = () => {
                             <span style={{color: '#F0972A'}}>Create your </span>
                             <span style={{color: '#626262'}}>account</span>
                         </h1>
-                        <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
+                        <p>{register_page_paragraph}</p>
                     </div>
                     <div className='register-right-content'>
                         <div className='left-column'>
                             <label htmlFor="">First Name</label>
                             <br />
-                            <input type="text" placeholder='John' onChange={e => setFirstName(e.target.value)} value={firstName} required/>
+                            <input 
+                                type="text" 
+                                placeholder='John' 
+                                onChange={e => setFirstName(e.target.value)} 
+                                value={firstName} 
+                                required
+                            />
                             <br />
                             <label htmlFor="">Email</label>
                             <br />
-                            <input type="email" placeholder='john@smith.com' onChange={e => setEmail(e.target.value)} value={email} required/>
+                            <input 
+                                type="email" 
+                                placeholder='john@smith.com' 
+                                onChange={e => setEmail(e.target.value)} 
+                                value={email} 
+                                required
+                            />
                             <br />
                             <label htmlFor="">Password</label>
                             <br />
-                            <input type="password" placeholder='********' onChange={e => setPassword(e.target.value)} value={password} required/>
+                            <input 
+                                type="password" 
+                                placeholder='********' 
+                                onChange={e => setPassword(e.target.value)} 
+                                value={password} 
+                                required
+                            />
                             <br />
-                            <button className='register-button' onClick={handleSubmit} disabled={shouldDisableSubmit}>CREATE ACCOUNT</button>
+                            <button 
+                                className='register-button' 
+                                onClick={handleSubmit} 
+                                disabled={shouldDisableSubmit}>
+                                CREATE ACCOUNT
+                            </button>
                         </div>
                         <div className='right-column'>
                             <label htmlFor="">Last Name</label>
                             <br />
-                            <input type="text" placeholder='Smith' onChange={e => setLastName(e.target.value)} value={lastName} required/>
+                            <input 
+                                type="text" 
+                                placeholder='Smith' 
+                                onChange={e => setLastName(e.target.value)} 
+                                value={lastName} 
+                                required
+                            />
                             <br />
                             <label htmlFor="">Birthday</label>
                             <br />
                             <input 
                                 type="date" 
                                 max='2023-01-01' 
-                                required 
-                                pattern="(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})" 
+                                pattern={date_pattern} 
                                 className='input-date'
                                 onChange={e => setBirthday(e.target.value)}
-                                value={birthday}    
+                                value={birthday} 
+                                required 
                             />
                             <br />
                             <label htmlFor="">Repeat Password</label>
                             <br />
-                            <input type="password" placeholder='********' required onChange={e => setRepeatPassword(e.target.value)} value={repeatPassword}/>
+                            <input 
+                                type="password" 
+                                placeholder='********' 
+                                onChange={e => setRepeatPassword(e.target.value)} 
+                                value={repeatPassword}
+                                required 
+                            />
                         </div>
                     </div>
                 </div>

@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import * as strings from "../templates.json";
 import "../css/Main.css";
 
 export const Main = () => {
-    const cardBody = 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal';
+    const {card_body} = strings;
     const bkgImgUrl = 'https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667';
 
     const [freshRecipes, setFreshRecipes] = useState([]);
@@ -43,7 +44,7 @@ export const Main = () => {
                             <Card 
                                 title={recipe.title}
                                 imageUrl={bkgImgUrl}
-                                body={cardBody}
+                                body={card_body}
                                 courseType={recipe.category}
                                 stars={recipe.stars}
                                 persons={recipe.num_of_people}
@@ -57,19 +58,17 @@ export const Main = () => {
                 </div>
                 <div className="main-most-popular-recipes-content">
                     {popularRecipes.map((recipe, index) => (
-                        // <div key={`popular-recipe-${index}`} className="main-recipe-card">
-                        <React.Fragment key={`most-popualar-recipe-${index}`}>
+                        <React.Fragment key={`most-popular-recipe-${index}`}>
                             <Card
                                 title={recipe.title}
                                 imageUrl={bkgImgUrl}
-                                body={cardBody}
+                                body={card_body}
                                 courseType={recipe.category}
                                 stars={recipe.stars}
                                 persons={recipe.num_of_people}
                                 time={recipe.preparation_time}
                             />
                         </React.Fragment>
-                        // </div>
                     ))}
                 </div>
             </div> 
