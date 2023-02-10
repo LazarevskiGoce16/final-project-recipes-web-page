@@ -130,7 +130,7 @@ label {
     padding: 9px;
     transition: 0.2s;
     outline: none;
-    color: #A5A5A5;
+    color: black;
     margin-top: 10px;
     width: 179px;
     transition: 0.2s;
@@ -139,6 +139,7 @@ label {
 .second-row select:focus {
     border: 1px solid rgb(80, 80, 80);
     transition: 0.2s;
+    color: #A5A5A5;
 }
 
 .third-row textarea {
@@ -214,4 +215,8 @@ textarea::placeholder {
 
 .save-button:disabled {
     background-color: #A5A5A5;
+}
+
+.recipe-category-selector {
+    color: #626262;
 }
