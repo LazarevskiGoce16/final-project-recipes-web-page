@@ -25,7 +25,7 @@ export const RecipeLinkCard = ({title, category, date, id}) => {
 
     return (
         <div className='item-list'>
-            <Link to='/my-recipes/create' className='card-link'>
+            <Link to='/my-recipes/edit' className='card-link'>
                 <div className='recipe-links-rectangle'>
                     <span className='recipe-name recipe-item'>{title}</span>
                     <span className='category recipe-item'>{category}</span> 

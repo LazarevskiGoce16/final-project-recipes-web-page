@@ -9,6 +9,7 @@ import { Lunch } from './pages/Lunch';
 import { Dinner } from './pages/Dinner';
 import { MyRecipes } from './pages/MyRecipes';
 import { CreateRecipe } from './pages/CreateRecipe';
+import { EditRecipe } from './pages/EditRecipe';
 import { MyProfile } from './pages/MyProfile';
 // COMPONENTS
 import { RecipeModal } from './components/RecipeModal';
@@ -34,6 +35,7 @@ const App = () => {
       <Route path='/my-recipes'>
         <Route index element={<MyRecipes />}/>
         <Route path='create' element={<CreateRecipe />}/>
+        <Route path='edit' element={<EditRecipe />}/>
       </Route>
       <Route path='/my-profile' element={<MyProfile />}/>
     </Routes>
