@@ -71,13 +71,14 @@
 }
 
 .recipe-links-rectangle {
+    position: relative;
     display: flex;
     align-items: center;
     background: var(--white) 0% 0% no-repeat padding-box;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border-radius: 5px;
     opacity: 1;
-    width: 1310px;
+    width: 100%;
     height: 61px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -113,10 +114,22 @@
 }
 
 .trashcan-btn {
-    margin-left: 30%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 100;
+    margin-right: 4em;
+    cursor: pointer;
 }
 
 .card-link {
+    position: relative;
     text-decoration: none;
     color: #A5A5A5;
+}   
+
+.item-list {
+    position: relative;
+    width: 1310px;
 }
