@@ -22,7 +22,7 @@ api.get('/api/v1/auth/recipes', recipes.getAll);
 api.get('/api/v1/auth/recipes/category', recipes.getRecipesByCategory);
 api.get('/api/v1/auth/recipes/me', recipes.getMine);
 
-api.post('/api/v1/auth/recipes', recipes.create);
+api.post('/api/v1/auth/recipes/create', recipes.create);
 api.put('/api/v1/auth/recipes/:id', recipes.update);
 api.delete('/api/v1/auth/recipes/:id', recipes.remove);
 

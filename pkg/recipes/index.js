@@ -10,7 +10,9 @@ const Recipe = mongoose.model(
         description: String,
         full_recipe: String,
         stars: Number,
-        published_on: Date
+        published_on: String,
+        created_by: String,
+        author_id: String
     },
     'recipes'
 );
@@ -19,8 +21,8 @@ const getAll = async () => {
     return Recipe.find({});
 };
 
-const getUserRecipes = async (author_id) => {
-    return Recipe.find({author_id});
+const getUserRecipes = async (uid) => {
+    return Recipe.find({author_id: uid});
 };
 
 const create = async (data) => {

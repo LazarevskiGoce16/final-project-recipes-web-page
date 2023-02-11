@@ -1,11 +1,33 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { RecipeLinkCard } from '../components/RecipeLinkCard';
 import { HeaderTwo } from '../components/HeaderTwo';
 import { Footer } from '../components/Footer';
 import { Link } from 'react-router-dom';
 import plusBtn from '../pics/icon_plus_white.svg';
-import trashBtn from '../pics/icon_trashcan.svg';
 import '../css/MyRecipes.css';
 
 export const MyRecipes = () => {
+    const [myRecipes, setMyRecipes] = useState([]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwt');
+        axios.get('http://127.0.0.1:10003/api/v1/auth/recipes/me', {
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",  
+                "Authorization": token ? `Bearer ${token}` : ""
+            }
+        })
+        .then(res => {
+            console.log(res.data);
+            setMyRecipes(res.data);
+        })
+        .catch(err => {
+            console.error(err);
+        })
+    }, []);
+
     return (
         <>
         <HeaderTwo />
@@ -19,81 +41,32 @@ export const MyRecipes = () => {
                 </div>
                 <div className='my-recipes-content'>
                     <div className='recipe-labels'>
-                        <label htmlFor="" className='recipe-name-label'>Recipe Name</label>
-                        <label htmlFor="" className='category-label'>Category</label>
-                        <label htmlFor="" className='created-on-label'>Created On</label>
-                        <label htmlFor="" className='delete-label'>Delete</label>
+                        <label htmlFor="recipe-name" className='recipe-name-label'>
+                            Recipe Name
+                        </label>
+                        <label htmlFor="category" className='category-label'>
+                            Category
+                        </label>
+                        <label htmlFor="created-on" className='created-on-label'>
+                            Created On
+                        </label>
+                        <label htmlFor="trashcan-btn" className='delete-label'>
+                            Delete
+                        </label>
                     </div>
-                    <Link to='/my-recipes/create' className='card-link'>
-                        <div className='recipe-links-rectangle'>
-                            <span className='recipe-name recipe-item'>Homemade Pizza</span>
-                            <span className='category recipe-item'>Brunch</span> 
-                            <span className='created-on recipe-item'>22.11.2020</span> 
-                            <Link to='/my-recipes/create'>
-                                <img src={trashBtn} alt="trashcan-btn" className='trashcan-btn recipe-item'/>
-                            </Link>
-                        </div>
-                    </Link>
-                    <Link to='/my-recipes/create' className='card-link'>
-                        <div className='recipe-links-rectangle'>
-                            <span className='recipe-name recipe-item'>Sea Spaghetti</span>
-                            <span className='category recipe-item'>Lunch</span> 
-                            <span className='created-on recipe-item'>13.10.2020</span> 
-                            <Link to='/my-recipes/create'>
-                                <img src={trashBtn} alt="trashcan-btn" className='trashcan-btn recipe-item'/>
-                            </Link>
-                        </div>
-                    </Link>
-                    <Link to='/my-recipes/create' className='card-link'>
-                        <div className='recipe-links-rectangle'>
-                            <span className='recipe-name recipe-item'>Easy Tacos</span>
-                            <span className='category recipe-item'>Dinner</span> 
-                            <span className='created-on recipe-item'>01.09.2020</span> 
-                            <Link to='/my-recipes/create'>
-                                <img src={trashBtn} alt="trashcan-btn" className='trashcan-btn recipe-item'/>
-                            </Link>
-                        </div>
-                    </Link>
-                    <Link to='/my-recipes/create' className='card-link'>
-                        <div className='recipe-links-rectangle'>
-                            <span className='recipe-name recipe-item'>Mexican Burrito</span>
-                            <span className='category recipe-item'>Breakfast</span> 
-                            <span className='created-on recipe-item'>01.09.2020</span> 
-                            <Link to='/my-recipes/create'>
-                                <img src={trashBtn} alt="trashcan-btn" className='trashcan-btn recipe-item'/>
-                            </Link>
-                        </div>
-                    </Link>
-                    <Link to='/my-recipes/create' className='card-link'>
-                        <div className='recipe-links-rectangle'>
-                            <span className='recipe-name recipe-item'>Energy Booster</span>
-                            <span className='category recipe-item'>Dinner</span> 
-                            <span className='created-on recipe-item'>07.08.2020</span> 
-                            <Link to='/my-recipes/create'>
-                                <img src={trashBtn} alt="trashcan-btn" className='trashcan-btn recipe-item'/>
-                            </Link>
-                        </div>
-                    </Link>
-                    <Link to='/my-recipes/create' className='card-link'>
-                        <div className='recipe-links-rectangle'>
-                            <span className='recipe-name recipe-item'>Mac & Bacon</span>
-                            <span className='category recipe-item'>Brunch</span> 
-                            <span className='created-on recipe-item'>02.08.2020</span> 
-                            <Link to='/my-recipes/create'>
-                                <img src={trashBtn} alt="trashcan-btn" className='trashcan-btn recipe-item'/>
-                            </Link>
-                        </div>
-                    </Link>
-                    <Link to='/my-recipes/create' className='card-link'>
-                        <div className='recipe-links-rectangle'>
-                            <span className='recipe-name recipe-item'>Caesar Salad</span>
-                            <span className='category recipe-item'>Brunch</span> 
-                            <span className='created-on recipe-item'>27.07.2020</span> 
-                            <Link to='/my-recipes/create'>
-                                <img src={trashBtn} alt="trashcan-btn" className='trashcan-btn recipe-item'/>
-                            </Link>
-                        </div>
-                    </Link>
+                    {myRecipes.map((recipe, index) => (
+                        <React.Fragment key={`my-recipes-${index}`}>
+                            <RecipeLinkCard 
+                                title={recipe.title}
+                                category={recipe.category}
+                                date={recipe.published_on}
+                                id={recipe._id}
+                            />
+                        </React.Fragment>
+                    )).reverse((a, b) => 
+                        (a.published_on > b.published_on) ? 1 : 
+                        (b.published_on > a.published_on) ? -1 : 0
+                    )}
                 </div>
             </div>
         </div>

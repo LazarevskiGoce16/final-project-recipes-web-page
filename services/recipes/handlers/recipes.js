@@ -45,10 +45,13 @@ const getMine = async (req, res) => {
 
 const create = async (req, res) => {
     try {
+        let date = new Date();
+        let str = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
         let payload = {
             ...req.body,
-            // author_id: req.auth.uid,
-            published_on: new Date()
+            created_by: req.auth.email,
+            author_id: req.auth.uid,
+            published_on: str 
         };
         let c = await recipes.create(payload);
         return res.status(201).send(c);
@@ -59,10 +62,11 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        let date = new Date();
+        let str = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
         let payload = {
             ...req.body,
-            author_id: req.auth.uid,
-            published_on: new Date()
+            published_on: str
         };
         await recipes.update(req.params.id, req.auth.uid, payload);
         return res.status(204).send('');

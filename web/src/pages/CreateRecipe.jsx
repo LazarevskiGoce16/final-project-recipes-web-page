@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { HeaderTwo } from '../components/HeaderTwo';
 import { Footer } from '../components/Footer';
-import { Link } from 'react-router-dom';
 import returnBtn from '../pics/icon_back_white.svg';
 import * as strings from '../templates.json';
 import '../css/CreateRecipe.css';
@@ -30,13 +29,24 @@ export const CreateRecipe = () => {
     );
 
     const handleSubmit = () => {
-        axios.post('http://127.0.0.1:10003/api/v1/auth/recipes', {
-            title : title,
-            category : category,
-            preparation_time : prepTime,
-            num_of_people : numOfPeople,
-            description : description,
-            full_recipe : fullRecipe,
+        const token = localStorage.getItem('jwt');
+        axios({
+            method: 'POST',
+            url: 'http://127.0.0.1:10003/api/v1/auth/recipes/create',
+            data: {
+                title : title,
+                category : category,
+                preparation_time : prepTime,
+                num_of_people : numOfPeople,
+                description : description,
+                full_recipe : fullRecipe,
+                stars : 0
+            },
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",  
+                "Authorization": token ? `Bearer ${token}` : ""
+            }
         })
         .then(() => {
             navigate('/my-recipes');
@@ -84,14 +94,14 @@ export const CreateRecipe = () => {
                                 <label htmlFor="">Category</label>
                                 <br />
                                 <select 
-                                    name="recipe-category-selector" 
+                                    className="recipe-category-selector" 
                                     onChange={e => setCategory(e.target.value)} 
                                     value={category} 
                                     required>
-                                    <option value="breakfast">Breakfast</option>
-                                    <option value="brunch">Brunch</option>
-                                    <option value="lunch">Lunch</option>
-                                    <option value="dinner">Dinner</option>
+                                    <option value="breakfast">breakfast</option>
+                                    <option value="brunch">brunch</option>
+                                    <option value="lunch">lunch</option>
+                                    <option value="dinner">dinner</option>
                                 </select>
                             </div>
                             <div>
