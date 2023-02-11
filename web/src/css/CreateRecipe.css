@@ -130,7 +130,6 @@ label {
     padding: 9px;
     transition: 0.2s;
     outline: none;
-    color: black;
     margin-top: 10px;
     width: 179px;
     transition: 0.2s;
@@ -139,7 +138,7 @@ label {
 .second-row select:focus {
     border: 1px solid rgb(80, 80, 80);
     transition: 0.2s;
-    color: #A5A5A5;
+    color: black;
 }
 
 .third-row textarea {
