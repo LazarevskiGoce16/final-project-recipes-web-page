@@ -120,7 +120,7 @@
     transform: translateY(-50%);
     z-index: 100;
     margin-right: 4em;
-    cursor: pointer;
+    cursor: default;
 }
 
 .card-link {
