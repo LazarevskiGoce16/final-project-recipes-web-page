@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import { HeaderTwo } from '../components/HeaderTwo';
 import { Footer } from '../components/Footer';
 import returnBtn from '../pics/icon_back_white.svg';
@@ -10,8 +10,12 @@ import '../css/CreateRecipe.css';
 export const EditRecipe = () => {
     const {short_recipe_desc} = strings;
     const {long_recipe_desc} = strings;
+    const {recipe_bkg_img} = strings;
+
+    const { recipeId } = useParams();
 
     const navigate = useNavigate();
+
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [prepTime, setPrepTime] = useState('');
@@ -30,8 +34,10 @@ export const EditRecipe = () => {
 
     const handleSubmit = () => {
         const token = localStorage.getItem('jwt');
-        axios.post('http://127.0.0.1:10003/api/v1/auth/recipes/:id', {
-            body: {
+        axios({
+            method: 'PUT',
+            url: `http://127.0.0.1:10003/api/v1/auth/recipes/${recipeId}`,
+            data: {
                 title : title,
                 category : category,
                 preparation_time : prepTime,
@@ -47,6 +53,7 @@ export const EditRecipe = () => {
             }
         })
         .then(() => {
+            alert('Your recipe has been successfully edited!');
             navigate('/my-recipes');
         })
         .catch(err => {
@@ -70,7 +77,7 @@ export const EditRecipe = () => {
                         <label htmlFor="">Recipe Image</label>
                         <br />
                         <img 
-                            src="https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667" 
+                            src={recipe_bkg_img} 
                             alt="recipe-img" 
                         />
                         <br />
@@ -92,7 +99,7 @@ export const EditRecipe = () => {
                                 <label htmlFor="">Category</label>
                                 <br />
                                 <select 
-                                    name="recipe-category-selector" 
+                                    className="recipe-category-selector" 
                                     onChange={e => setCategory(e.target.value)} 
                                     value={category} 
                                     required>

@@ -4,6 +4,8 @@ import trashBtn from '../pics/icon_trashcan.svg';
 import '../css/MyRecipes.css';
 
 export const RecipeLinkCard = ({title, category, date, id}) => {
+    let rcpId = id;
+
     const removeRecipeHandler = () => {
         const token = localStorage.getItem('jwt');
         axios.delete(`http://127.0.0.1:10003/api/v1/auth/recipes/${id}`, {
@@ -25,7 +27,7 @@ export const RecipeLinkCard = ({title, category, date, id}) => {
 
     return (
         <div className='item-list'>
-            <Link to='/my-recipes/edit' className='card-link'>
+            <Link to={'/my-recipes/' + rcpId} className='card-link'>
                 <div className='recipe-links-rectangle'>
                     <span className='recipe-name recipe-item'>{title}</span>
                     <span className='category recipe-item'>{category}</span> 

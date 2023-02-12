@@ -10,6 +10,7 @@ import '../css/CreateRecipe.css';
 export const CreateRecipe = () => {
     const {short_recipe_desc} = strings;
     const {long_recipe_desc} = strings;
+    const {recipe_bkg_img} = strings;
 
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
@@ -49,6 +50,7 @@ export const CreateRecipe = () => {
             }
         })
         .then(() => {
+            alert('Your recipe has been successfully created and added to the list!');
             navigate('/my-recipes');
         })
         .catch(err => {
@@ -72,7 +74,7 @@ export const CreateRecipe = () => {
                         <label htmlFor="">Recipe Image</label>
                         <br />
                         <img 
-                            src="https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667" 
+                            src={recipe_bkg_img} 
                             alt="recipe-img" 
                         />
                         <br />
