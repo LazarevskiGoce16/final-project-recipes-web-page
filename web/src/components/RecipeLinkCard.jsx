@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import trashBtn from '../pics/icon_trashcan.svg';
 import '../css/MyRecipes.css';
 
-export const RecipeLinkCard = ({title, category, date, id}) => {
+export const RecipeLinkCard = ({title, category, date, id, num}) => {
     let rcpId = id;
 
     const removeRecipeHandler = () => {
         const token = localStorage.getItem('jwt');
-        axios.delete(`http://127.0.0.1:10003/api/v1/auth/recipes/${id}`, {
+        axios.delete(`http://127.0.0.1:10003/api/v1/auth/recipes/${rcpId}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",  
@@ -17,8 +17,8 @@ export const RecipeLinkCard = ({title, category, date, id}) => {
         })
         .then(() => {
             alert('Recipe has been deleted!');
-            document.getElementsByClassName('item-list')[0].remove();
-            console.log('Successfully deleted the recipe!');
+            document.getElementsByClassName('item-list')[num].remove();
+            console.log(`Successfully deleted the recipe ${num}!`);
         })
         .catch(err => {
             console.error(err);

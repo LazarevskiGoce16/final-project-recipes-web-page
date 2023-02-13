@@ -20,8 +20,8 @@ export const MyRecipes = () => {
             }
         })
         .then(res => {
-            console.log(res.data);
-            setMyRecipes(res.data);
+            console.log(res.data.mr);
+            setMyRecipes(res.data.mr);
         })
         .catch(err => {
             console.error(err);
@@ -61,12 +61,15 @@ export const MyRecipes = () => {
                                 category={recipe.category}
                                 date={recipe.published_on}
                                 id={recipe._id}
+                                num={index}
                             />
                         </React.Fragment>
-                    )).reverse((a, b) => 
-                        (a.published_on > b.published_on) ? 1 : 
-                        (b.published_on > a.published_on) ? -1 : 0
-                    )}
+                    ))
+                    // .reverse((a, b) => 
+                    //     (a.published_on > b.published_on) ? 1 : 
+                    //     (b.published_on > a.published_on) ? -1 : 0
+                    // )
+                    }
                 </div>
             </div>
         </div>

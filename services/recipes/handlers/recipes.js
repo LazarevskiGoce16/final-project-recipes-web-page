@@ -37,7 +37,15 @@ const getRecipesByCategory = async (req, res) => {
 const getMine = async (req, res) => {
     try {
         let rs = await recipes.getUserRecipes(req.auth.uid);
-        res.status(200).send(rs);
+        const mr = rs.reverse((a, b) => {
+            if(Date(a.published_on) < Date(b.published_on)) {
+                return 1;
+            } else if(Date(a.published_on) > Date(b.published_on)) {
+                return -1;
+            }
+            return 0;
+        });
+        res.status(200).send({mr: mr});
     } catch (er) {
         return res.status(500).send("Internal Server Error!");   
     }
