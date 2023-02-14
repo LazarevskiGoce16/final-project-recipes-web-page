@@ -3,9 +3,13 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const { expressjwt : jwt } = require('express-jwt');
 const storage = require('./handlers/storage');
+const cors = require('cors');
 
 const api = express();
 
+api.use(cors({
+    origin: '*'
+}));
 api.use(jwt({
     algorithms: ['HS256'],
     secret: config.get('security').jwt_secret
