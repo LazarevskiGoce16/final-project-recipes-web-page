@@ -70,7 +70,7 @@ label {
     width: 234px;
     height: 147px;
     margin-top: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     border: #A5A5A5 1px solid;
     border-radius: 5px;
     box-shadow: 0px 3px 6px #00000029;
@@ -85,16 +85,20 @@ label {
     border: 1px solid #A5A5A5;
     opacity: 1;
     border-radius: 5px;
-    padding: 10px 30px;
+    padding: 10px 73px;
     cursor: pointer;
     transition: 0.2s;
-    width: 234px;
+    width: 100%;
 }
 
 .upload-img-btn:hover {
     transition: 0.2s;
     background-color: #626262;
     color: #F8F7F2;
+}
+
+.upload-img-btn input {
+    display: none;
 }
 
 .create-recipe-middle-content {
