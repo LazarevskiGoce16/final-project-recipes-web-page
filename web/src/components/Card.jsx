@@ -4,9 +4,12 @@ import star from '../pics/icon_star.svg';
 import nextArrows from '../pics/icon_arrows_white.svg';
 import { RecipeModal } from './RecipeModal';
 import { useState } from 'react';
+import * as strings from "../templates.json";
 import '../css/Card.css';
 
-export const Card = ({title, imageUrl, body, courseType, persons, stars, time}) => {
+export const Card = ({title, imageUrl, shortDesc, longDesc, courseType, persons, stars, time}) => {
+    const {card_body} = strings;
+
     const [showModal, setShowModal] = useState(false);
 
     const cardClick = () => {
@@ -24,7 +27,7 @@ export const Card = ({title, imageUrl, body, courseType, persons, stars, time}) 
                 <h3>{title}</h3>
             </div>
             <div className="card-body">
-                <p>{body}</p>
+                <p>{card_body}</p>
             </div>
             <div className='card-facilities'>
                 <img src={timeClock} alt='clock' className='clock-img'/>
@@ -44,6 +47,8 @@ export const Card = ({title, imageUrl, body, courseType, persons, stars, time}) 
             time={time}
             persons={persons}
             stars={stars}
+            shortBody={shortDesc}
+            longBody={longDesc}
             setShow={setShowModal}
         />}
         </>

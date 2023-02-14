@@ -7,8 +7,7 @@ import * as strings from "../templates.json";
 import "../css/Categories.css";
 
 export const Lunch = () => {
-    const {card_body} = strings;
-    const bkgImgUrl = 'https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667';
+    const {recipe_bkg_img} = strings;
 
     const [category, setCategory] = useState([]);
 
@@ -48,8 +47,9 @@ export const Lunch = () => {
                     {category.map(c => (
                         <Card 
                             title={c.title}
-                            imageUrl={bkgImgUrl}
-                            body={card_body}
+                            imageUrl={recipe_bkg_img}
+                            shortDesc={c.description}
+                            longDesc={c.full_recipe}
                             courseType={c.category}
                             stars={c.stars}
                             persons={c.num_of_people}

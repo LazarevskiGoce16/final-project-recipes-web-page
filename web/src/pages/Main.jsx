@@ -7,8 +7,7 @@ import * as strings from "../templates.json";
 import "../css/Main.css";
 
 export const Main = () => {
-    const {card_body} = strings;
-    const bkgImgUrl = 'https://www.nourishedlife.co.uk/media/qm4js31t/pizza-beer-1200x628-facebook-1200x628.jpg?width=500&height=261.6666666666667';
+    const {recipe_bkg_img} = strings;
 
     const [freshRecipes, setFreshRecipes] = useState([]);
     const [popularRecipes, setPopularRecipes] = useState([]);
@@ -26,6 +25,7 @@ export const Main = () => {
             setFreshRecipes(res.data.fn);
             setPopularRecipes(res.data.mpr);
             console.log(res.data);
+            console.log(res.data.mpr[0].description);
         })
         .catch(err => {
             console.log(err);
@@ -45,8 +45,9 @@ export const Main = () => {
                         <React.Fragment key={`fresh-and-new-recipe-${index}`}>
                             <Card 
                                 title={recipe.title}
-                                imageUrl={bkgImgUrl}
-                                body={card_body}
+                                imageUrl={recipe_bkg_img}
+                                shortDesc={recipe.description}
+                                longDesc={recipe.full_recipe}
                                 courseType={recipe.category}
                                 stars={recipe.stars}
                                 persons={recipe.num_of_people}
@@ -63,8 +64,9 @@ export const Main = () => {
                         <React.Fragment key={`most-popular-recipe-${index}`}>
                             <Card
                                 title={recipe.title}
-                                imageUrl={bkgImgUrl}
-                                body={card_body}
+                                imageUrl={recipe_bkg_img}
+                                shortDesc={recipe.description}
+                                longDesc={recipe.full_recipe}
                                 courseType={recipe.category}
                                 stars={recipe.stars}
                                 persons={recipe.num_of_people}
@@ -79,4 +81,3 @@ export const Main = () => {
         </>        
     )
 };
-
