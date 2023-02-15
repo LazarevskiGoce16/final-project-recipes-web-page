@@ -2,11 +2,9 @@ import closeBtn from '../pics/icon_close.svg';
 import timeClock from '../pics/icon_time.svg';
 import plate from '../pics/icon_plate.svg';
 import star from '../pics/icon_star.svg';
-import * as strings from "../templates.json";
 import '../css/RecipeModal.css';
 
-export const RecipeModal = ({setShow, title, category, time, persons, stars, shortBody, longBody}) => {
-    const {modal_bkg_img} = strings;
+export const RecipeModal = ({setShow, recipeImage, title, category, time, persons, stars, shortBody, longBody}) => {
 
     const closedModal = () => {
         setShow(false);
@@ -30,7 +28,7 @@ export const RecipeModal = ({setShow, title, category, time, persons, stars, sho
                 <div className="modal-body">
                     <div className="left-body">
                         <img 
-                            src={modal_bkg_img} alt="recipe-img" 
+                            src={recipeImage} alt="recipe-img" 
                             className="modal-bkg-pic"/>
                         <div
                             className="left-body-title">

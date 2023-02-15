@@ -21,7 +21,7 @@ export const Card = ({title, imageUrl, shortDesc, longDesc, courseType, persons,
         <div className="card-container" onClick={cardClick}>
             <div className="image-container">
                 <span>{courseType}</span>
-                <img src={imageUrl} alt='coverImg' />
+                <img src={imageUrl} alt='cover-img'/>
             </div>
             <div className="card-title">
                 <h3>{title}</h3>
@@ -42,6 +42,7 @@ export const Card = ({title, imageUrl, shortDesc, longDesc, courseType, persons,
             </div>
         </div>
         {showModal && <RecipeModal
+            recipeImage={imageUrl}
             title={title}
             category={courseType}
             time={time}

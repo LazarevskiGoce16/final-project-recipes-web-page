@@ -3,11 +3,11 @@ import { Card } from "../components/Card";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { useState, useEffect } from "react";
-import * as strings from "../templates.json";
+// import * as strings from "../templates.json";
 import "../css/Categories.css";
 
 export const Lunch = () => {
-    const {recipe_bkg_img} = strings;
+    // const {recipe_bkg_img} = strings;
 
     const [category, setCategory] = useState([]);
 
@@ -31,7 +31,7 @@ export const Lunch = () => {
             console.log(res.data.rs);
         })
         .catch(err => {
-            console.log(err);
+            console.error(err);
         })
     }, []);
 
@@ -44,18 +44,21 @@ export const Lunch = () => {
                     <h1>Lunch</h1>
                 </div>
                 <div className="all-categories-content">
-                    {category.map(c => (
-                        <Card 
-                            title={c.title}
-                            imageUrl={recipe_bkg_img}
-                            shortDesc={c.description}
-                            longDesc={c.full_recipe}
-                            courseType={c.category}
-                            stars={c.stars}
-                            persons={c.num_of_people}
-                            time={c.preparation_time}
-                        />
-                    ))}
+                    {category.map(c => {
+                        const imagePaths = c?.recipe_image?.split("\\");
+                        return (
+                            <Card 
+                                title={c.title}
+                                imageUrl={imagePaths?.length && `/images/${imagePaths[imagePaths.length-1]}`}
+                                shortDesc={c.description}
+                                longDesc={c.full_recipe}
+                                courseType={c.category}
+                                stars={c.stars}
+                                persons={c.num_of_people}
+                                time={c.preparation_time}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div>

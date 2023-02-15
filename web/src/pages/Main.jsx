@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import * as strings from "../templates.json";
 import "../css/Main.css";
 
 export const Main = () => {
-    const {recipe_bkg_img} = strings;
-
     const [freshRecipes, setFreshRecipes] = useState([]);
     const [popularRecipes, setPopularRecipes] = useState([]);
     
@@ -25,7 +22,6 @@ export const Main = () => {
             setFreshRecipes(res.data.fn);
             setPopularRecipes(res.data.mpr);
             console.log(res.data);
-            console.log(res.data.mpr[0].description);
         })
         .catch(err => {
             console.log(err);
@@ -41,39 +37,45 @@ export const Main = () => {
                     <h1>Fresh & New</h1>
                 </div>
                 <div className="main-fresh-and-new-content">
-                    {freshRecipes.map((recipe, index) => (
-                        <React.Fragment key={`fresh-and-new-recipe-${index}`}>
-                            <Card 
-                                title={recipe.title}
-                                imageUrl={recipe_bkg_img}
-                                shortDesc={recipe.description}
-                                longDesc={recipe.full_recipe}
-                                courseType={recipe.category}
-                                stars={recipe.stars}
-                                persons={recipe.num_of_people}
-                                time={recipe.preparation_time}
-                            />
-                        </React.Fragment>
-                    ))}
+                    {freshRecipes.map((recipe, index) => {
+                        const imagePaths = recipe?.recipe_image?.split("\\");
+                        return (
+                            <React.Fragment key={`fresh-and-new-recipe-${index}`}>
+                                <Card
+                                    title={recipe.title}
+                                    imageUrl={imagePaths?.length && `/images/${imagePaths[imagePaths.length-1]}`}
+                                    shortDesc={recipe.description}
+                                    longDesc={recipe.full_recipe}
+                                    courseType={recipe.category}
+                                    stars={recipe.stars}
+                                    persons={recipe.num_of_people}
+                                    time={recipe.preparation_time}
+                                />
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
                 <div className="main-most-popular-recipes-title">
                     <h1>Most Popular Recipes</h1>
                 </div>
                 <div className="main-most-popular-recipes-content">
-                    {popularRecipes.map((recipe, index) => (
-                        <React.Fragment key={`most-popular-recipe-${index}`}>
-                            <Card
-                                title={recipe.title}
-                                imageUrl={recipe_bkg_img}
-                                shortDesc={recipe.description}
-                                longDesc={recipe.full_recipe}
-                                courseType={recipe.category}
-                                stars={recipe.stars}
-                                persons={recipe.num_of_people}
-                                time={recipe.preparation_time}
-                            />
-                        </React.Fragment>
-                    ))}
+                    {popularRecipes.map((recipe, index) => {
+                        const imagePaths = recipe?.recipe_image?.split("\\");
+                        return (
+                            <React.Fragment key={`most-popular-recipe-${index}`}>
+                                <Card
+                                    title={recipe.title}
+                                    imageUrl={imagePaths?.length && `/images/${imagePaths[imagePaths.length-1]}`}
+                                    shortDesc={recipe.description}
+                                    longDesc={recipe.full_recipe}
+                                    courseType={recipe.category}
+                                    stars={recipe.stars}
+                                    persons={recipe.num_of_people}
+                                    time={recipe.preparation_time}
+                                />
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
             </div> 
         </div>
