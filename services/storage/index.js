@@ -10,10 +10,10 @@ const api = express();
 api.use(cors({
     origin: '*'
 }));
-api.use(jwt({
-    algorithms: ['HS256'],
-    secret: config.get('security').jwt_secret
-}));
+// api.use(jwt({
+//     algorithms: ['HS256'],
+//     secret: config.get('security').jwt_secret
+// }));
 api.use(fileUpload());
 
 api.post('/api/v1/storage', storage.upload);

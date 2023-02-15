@@ -22,6 +22,7 @@ export const EditRecipe = () => {
     const [numOfPeople, setNumOfPeople] = useState('');
     const [description, setDescription] = useState('');
     const [fullRecipe, setFullRecipe] = useState('');
+    const [fileName, setFileName] = useState('');
 
     const shouldDisableSubmit = (
         !title || 
@@ -44,7 +45,8 @@ export const EditRecipe = () => {
                 num_of_people : numOfPeople,
                 description : description,
                 full_recipe : fullRecipe,
-                stars : 0
+                stars : 0,
+                recipe_image : fileName
             },
             headers: {
                 "Content-Type": "application/json",
@@ -59,6 +61,36 @@ export const EditRecipe = () => {
         .catch(err => {
             console.error(err);
         })
+    };
+
+    const storeFile = async (file, fileName) => {
+        let formData = new FormData();
+        formData.append('photo', file, fileName);
+        const token = localStorage.getItem('jwt');
+        const resultUpload = await axios({
+            method: 'POST',
+            url: 'http://127.0.0.1:10001/api/v1/storage',
+            data: formData,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Access-Control-Allow-Origin": "*",  
+                "Authorization": token ? `Bearer ${token}` : ""
+            }
+        })
+        .then(res => {
+            setFileName(res.data.filename);
+            console.log(res.data.filename);
+            return res.data.filename;
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
+        console.log(resultUpload);
+    };
+
+    const handleImageChange = (e) => {
+        storeFile(e.target.files[0], e.target.files[0].name);
     };
 
     return (
@@ -76,12 +108,28 @@ export const EditRecipe = () => {
                     <div className='create-recipe-left-content'>
                         <label htmlFor="">Recipe Image</label>
                         <br />
-                        <img 
-                            src={recipe_bkg_img} 
-                            alt="recipe-img" 
-                        />
-                        <br />
-                        <button className='upload-img-btn'>Upload Image</button>
+                        {fileName && 
+                            <img 
+                                src={`/../../../uploads/${fileName}`} 
+                                alt="recipe-img" 
+                            />
+                        }
+                        {!fileName && 
+                            <img 
+                                src={recipe_bkg_img} 
+                                alt="recipe-img" 
+                            />
+                        }
+                        <label className='upload-img-btn'>
+                            Upload Image
+                            <input 
+                                name='recipe_image'
+                                type='file'
+                                accept='image/*' 
+                                onChange={handleImageChange}
+                                required
+                            />
+                        </label>
                     </div>
                     <div className='create-recipe-middle-content'>
                         <div className='first-row'>
