@@ -20,7 +20,7 @@ export const CreateRecipe = () => {
     const [description, setDescription] = useState('');
     const [fullRecipe, setFullRecipe] = useState('');
     const [fileName, setFileName] = useState('');
-    // const [file, setFile] = useState('');
+    const [file, setFile] = useState(null);
 
     const shouldDisableSubmit = (
         !title || 
@@ -76,6 +76,10 @@ export const CreateRecipe = () => {
             }
         })
         .then(res => {
+            const imagePaths = res.data.filename.split("\\");
+            const filePath = (imagePaths?.length && 
+                `/images/${imagePaths[imagePaths.length-1]}`);
+            setFile(filePath);
             setFileName(res.data.filename);
             console.log(res.data.filename);
             return res.data.filename;
@@ -83,26 +87,11 @@ export const CreateRecipe = () => {
         .catch(err => {
             console.error(err);
         })
-
         console.log(resultUpload);
     };
 
-    // const uploadFile = (e, token) => {
-    //     e.preventDefault();
-    //     let fileURI = storeFile(e, token)
-    //     .then(() => {
-    //         setFileName(fileURI);
-    //         console.log(fileURI);
-    //     })
-    //     .catch(err => {
-    //         console.error(err);
-    //     })
-    // };
-
     const handleImageChange = (e) => {
         storeFile(e.target.files[0], e.target.files[0].name);
-        // setFile(e.target.files[0]);
-        // const file = event.target.files[0];
     };
 
     return (
@@ -122,7 +111,7 @@ export const CreateRecipe = () => {
                         <br />
                         {fileName && 
                             <img 
-                                src={`../../public/images/${fileName}`} 
+                                src={file} 
                                 alt="recipe-img" 
                             />
                         }
