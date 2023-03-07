@@ -78,7 +78,8 @@ export const CreateRecipe = () => {
         .then(res => {
             const imagePaths = res.data.filename.split("\\");
             const filePath = (imagePaths?.length && 
-                `/images/${imagePaths[imagePaths.length-1]}`);
+                `/images/${imagePaths[imagePaths.length - 1]}`
+            );
             setFile(filePath);
             setFileName(res.data.filename);
             console.log(res.data.filename);

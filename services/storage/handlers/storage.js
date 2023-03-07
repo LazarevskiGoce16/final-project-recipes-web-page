@@ -16,7 +16,6 @@ const upload = async (req, res) => {
         let newFileName = `${strings.random(10)}__${req.files.photo.name}`; 
         let uploadedPath = `C:\\Users\\User\\OneDrive\\Desktop\\final-project-recipes-web-page\\web\\public\\images\\${newFileName}`;
         await req.files.photo.mv(uploadedPath);
-        // let uploadedPathAbsolute = `${__dirname}/uploads/${newFileName}`;
         let uploadedPathAbsolute = resolve(`http://127.0.0.1:10001/uploads/${newFileName}`);
         res.status(201).send({filename: uploadedPathAbsolute});
     } catch (err) {

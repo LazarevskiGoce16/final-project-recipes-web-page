@@ -23,6 +23,7 @@ export const EditRecipe = () => {
     const [description, setDescription] = useState('');
     const [fullRecipe, setFullRecipe] = useState('');
     const [fileName, setFileName] = useState('');
+    const [file, setFile] = useState(null);
 
     const shouldDisableSubmit = (
         !title || 
@@ -78,6 +79,11 @@ export const EditRecipe = () => {
             }
         })
         .then(res => {
+            const imagePaths = res.data.filename.split("\\");
+            const filePath = (imagePaths?.length &&
+                `/images/${imagePaths[imagePaths.length - 1]}`
+            );
+            setFile(filePath);
             setFileName(res.data.filename);
             console.log(res.data.filename);
             return res.data.filename;
@@ -110,7 +116,7 @@ export const EditRecipe = () => {
                         <br />
                         {fileName && 
                             <img 
-                                src={`/../../../uploads/${fileName}`} 
+                                src={file} 
                                 alt="recipe-img" 
                             />
                         }
